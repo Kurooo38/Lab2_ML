@@ -5,7 +5,7 @@ import streamlit as st
 
 
 # Importing the dataset
-dataset = pd.read_csv(r"D:\Học\Hoc may\lab2\User_Data.csv")
+dataset = pd.read_csv(r"User_Data.csv")
 x = dataset.iloc[:,[2,3]].values
 y = dataset.iloc[:,4].values
 print(x[:10])
