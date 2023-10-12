@@ -20,8 +20,9 @@ y = dataset.iloc[:,4].values
 print(x[:10])
 print(x.shape)
 print(y.shape)
+fig = mp.figure()
 
-st.header('Dataset :')
+st.title('Dataset :')
 st.write(dataset.head())
 
 # Splitting the dataset into the Training set and Test set
@@ -51,6 +52,8 @@ print(cm)
 # Visualising the Training set results
 from matplotlib.colors import ListedColormap
 x_set, y_set = x_train, y_train
+fig, ax = mp.subplots()
+ax.scatter([1, 2, 3], [1, 2, 3])
 X1, X2 = np.meshgrid(np.arange(start = x_set[:, 0].min() - 1, stop = x_set[:, 0].max() + 1, step = 0.01),
                      np.arange(start = x_set[:, 1].min() - 1, stop = x_set[:, 1].max() + 1, step = 0.01))
 mp.contourf(X1,X2, classifier.predict(np.array([X1.ravel(),X2.ravel()]).T).reshape(X1.shape),
@@ -64,11 +67,14 @@ mp.title('Naive Bayes (Training set)')
 mp.xlabel('Age')
 mp.ylabel('Estimated Salary')
 mp.legend()
-st.pyplot(mp.show())
+st.header('Training set :')
+st.pyplot(fig)
 
 # Visualising the Test set results
 from matplotlib.colors import ListedColormap
-x_set, y_set = x_train, y_train
+x_set, y_set = x_test, y_test
+fig2, ax2 = mp.subplots()
+ax2.scatter([1, 2, 3], [1, 2, 3])
 X1, X2 = np.meshgrid(np.arange(start = x_set[:, 0].min() - 1, stop = x_set[:, 0].max() + 1, step = 0.01),
                      np.arange(start = x_set[:, 1].min() - 1, stop = x_set[:, 1].max() + 1, step = 0.01))
 mp.contourf(X1,X2, classifier.predict(np.array([X1.ravel(),X2.ravel()]).T).reshape(X1.shape),
@@ -82,9 +88,5 @@ mp.title('Naive Bayes (Test set)')
 mp.xlabel('Age')
 mp.ylabel('Estimated Salary')
 mp.legend()
-st.pyplot(mp.show())
-
-
-
-
-
+st.header('Test set :')
+st.pyplot(fig2)
